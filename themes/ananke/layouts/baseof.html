@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.LanguageCode }}" {{- if eq site.Language.LanguageDirection "rtl" }} dir="rtl" {{- end }}>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    {{/* NOTE: the Site's title, and if there is a page title, that is set too */}}
+    <title>{{ block "title" . }}{{ with .Params.Title }}{{ . }} | {{ end }}{{ .Site.Title }}{{ end }}</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
+    {{ hugo.Generator }}
+    {{ $production := hugo.IsProduction }}
+    {{ $public := not .Params.private }}
+    {{ if and $production $public }}
+      <meta name="robots" content="index, follow">
+    {{ else }}
+      <meta name="robots" content="noindex, nofollow">
+    {{ end }}
+    {{ with .Params.author | compare.Default .Site.Params.author }}
+      {{- $author := . -}}
+      {{- if reflect.IsSlice . -}}
+        {{- $author = collections.Delimit . ", " | transform.Plainify -}}
+      {{- end -}}
+      <meta name="author" content="{{ $author }}">
+    {{ end }}
+
+    {{ partials.Include "site-style.html" . }}
+    {{ partials.Include "site-scripts.html" . }}
+
+    {{ block "favicon" . }}
+      {{ partials.IncludeCached "site-favicon.html" . }}
+    {{ end }}
+
+    {{ if .OutputFormats.Get "RSS" }}
+    {{ with .OutputFormats.Get "RSS" }}
+      <link href="{{ .RelPermalink }}" rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" />
+      <link href="{{ .RelPermalink }}" rel="feed" type="application/rss+xml" title="{{ $.Site.Title }}" />
+      {{ end }}
+    {{ end }}
+
+    {{ if .Params.canonicalUrl }}
+      <link rel="canonical" href="{{ .Params.canonicalUrl }}">
+    {{ else }}
+      <link rel="canonical" href="{{ .Permalink }}">
+    {{ end }}
+
+    {{/* NOTE: These Hugo Internal Templates can be found starting at https://github.com/gohugoio/hugo/tree/master/tpl/tplimpl/embedded/templates */}}
+    {{/* former internal templates */}}
+    {{ partial "opengraph.html" . -}}
+    {{ partial "schema.html" . -}}
+    {{ partial "twitter_cards.html" . -}}
+
+    {{ if hugo.IsProduction }}
+      {{/* former internal template */}}
+      {{ partial "google_analytics.html" . }}
+    {{ end }}
+	{{ block "head" . }}{{ partials.Include "head-additions.html" . }}{{ end }}
+
+{{ if not .Params.hide_flags }}
+
+  <div id="language-drawer" style="position: fixed; ... (dein Style) ...">
+    
+    {{ if hugo.IsMultilingual }}
+      {{ end }}
+
+  </div>
+
+{{ end }}
+
+  </head>
+
+
+<style>
+ /* 1. Normalzustand: Grau / Gedimmt */
+  header a, 
+  nav a {
+    color: #f5f5f5 !important; /* Ein mittleres Grau */
+    text-decoration: none;     /* Unterstreichung weg */
+    transition: color 0.3s ease; /* Weicher Übergang */
+  }
+
+  /* 2. Hover-Zustand: Strahlend Weiß */
+  header a:hover, 
+  nav a:hover {
+    color: #999999 !important; /* Reinweiß */
+  }
+</style>
+
+
+  {{- $environment := hugo.Environment | compare.Default "production" -}}
+  <body class="ma0 {{ $.Param "body_classes"  | compare.Default "avenir bg-near-white"}} {{ $environment }}">
+
+    {{ block "header" . }}{{ partials.Include "site-header.html" .}}{{ end }}
+
+    <main class="pb7" role="main">
+      {{ block "main" . }}{{ end }}
+    </main>
+    {{ block "footer" . }}{{ partials.IncludeCached "site-footer.html" . }}{{ end }}
+
+
+
+<div style="position: fixed; top: 75px; right: 0; z-index: 9999; display: flex; flex-direction: column; gap: 5px; align-items: flex-end;">
+  
+  {{ if hugo.IsMultilingual }}
+    {{ range .Site.Home.AllTranslations }}
+      
+      {{ $langCode := .Lang | lower }}
+      {{ $flagCode := $langCode }}
+      {{ if eq $langCode "en" }}{{ $flagCode = "gb" }}{{ end }}
+
+      <a href="{{ .RelPermalink }}" 
+         title="{{ .Language.LanguageName }}"
+         class="flag-btn {{ if eq .Lang $.Lang }}active{{ end }}"
+      >
+         <img src="https://flagcdn.com/w40/{{ $flagCode }}.png" 
+              alt="{{ $langCode }}" 
+              style="width: 25px; height: auto; display: block;">
+         
+      </a>
+
+    {{ end }}
+  {{ end }}
+
+</div>
+
+<style>
+  .flag-btn {
+    display: flex;
+    justify-content: center; /* Zentriert die Flagge */
+    align-items: center;
+
+    background: rgba(0, 0, 0, 0.6);
+    
+    /* Box-Größe */
+    width: 45px;       
+    height: 40px;      
+    
+    text-decoration: none;
+    
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    
+    opacity: 0.6;
+    
+    /* Animation */
+    transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.3s;
+    overflow: hidden;
+  }
+
+  /* HOVER EFFEKT */
+  .flag-btn:hover {
+    opacity: 0.9 !important;
+    width: 55px; /* Schublade geht auf */
+    background: rgba(0, 0, 0, 0.9);
+    padding-right: 5px; /* Kleines Polster */
+  }
+
+  /* AKTIVE SPRACHE */
+  .flag-btn.active {
+    opacity: 0.8;
+    background: rgba(0, 0, 0, 0.8);
+    cursor: default;
+    border-left: 3px solid white; 
+  }
+  
+  /* Damit das Bild nicht verzerrt wird */
+  .flag-btn img {
+    pointer-events: none; /* Verhindert, dass man das Bild aus Versehen zieht */
+  }
+
+/* --- NEU: HANDY-REGEL (MEDIA QUERY) --- */
+/* --- HIER KOMMT DIE MANUELLE STEUERUNG --- */
+  
+  /* Definiere hier deine WUNSCH-BREITE (z.B. 800px) */
+  
+  /* REGEL A: Ab 800px -> Header-Text ausblenden (PC-Modus) */
+  @media screen and (min-width: 800px) {
+    .mobile-language-menu {
+      display: none !important;
+    }
+  }
+
+  /* REGEL B: Unter 800px -> Schublade ausblenden (Handy-Modus) */
+  /* (Ersetze deinen alten @media Block hiermit) */
+  @media screen and (max-width: 799px) {
+    #language-drawer {
+      display: none !important;
+    }
+  }
+</style> 
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"/>
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+
+<script>
+  // Aktiviert die Lightbox für alle Elemente, die wir gleich markieren
+  Fancybox.bind("[data-fancybox]", {
+    // Hier könnte man Einstellungen ändern, aber Standard ist super
+    Toolbar: {
+      display: {
+        left: [],
+        middle: [],
+        right: ["close"],
+      },
+    },
+  });
+</script>
+
+  </body>
+
+
+</html>

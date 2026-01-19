@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Mi Blog de Viaje</title>
-    <link>http://localhost:1313/jojoStar007/travelblog2026.git/es/tags/</link>
+    <link>http://localhost:1313/es/tags/</link>
     <description>Recent content in Tags on Mi Blog de Viaje</description>
     <generator>Hugo</generator>
     <language>es</language>
-    <atom:link href="http://localhost:1313/jojoStar007/travelblog2026.git/es/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/es/tags/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

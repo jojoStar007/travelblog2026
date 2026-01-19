@@ -1,0 +1,206 @@
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<div id="map-drawer" class="map-drawer open">
+  <div class="map-content">
+    <div id="my-map" style="width: 100%; height: 100%;"></div>
+  </div>
+
+  <div class="map-toggle-btn-wrapper">
+    <button id="map-toggle-btn" onclick="toggleMap()" title="Karte auf/zu">
+      <span id="btn-icon">⬅️</span>
+    </button>
+  </div>
+</div>
+
+<style>
+  /* 1. Die Schublade (Drawer) */
+  .map-drawer {
+    position: fixed;
+    top: 60px; /* Header Höhe */
+    left: 0;
+    bottom: 0;
+    width: 40%;
+    max-width: 85vw;
+    z-index: 900; 
+    background: white;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.15);
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  /* ZUSTAND: ZU */
+  .map-drawer.closed { transform: translateX(-100%); }
+
+  /* ZUSTAND: AUF */
+  .map-drawer.open { transform: translateX(0); }
+
+  /* 2. Der Button-Container */
+  .map-toggle-btn-wrapper {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 2000;
+  }
+
+  /* Wenn ZU: Button muss RAUS */
+  .map-drawer.closed .map-toggle-btn-wrapper { right: -40px; }
+
+  /* Wenn AUF: Button muss REIN */
+  .map-drawer.open .map-toggle-btn-wrapper { right: 0; }
+
+  /* 3. Button Styling */
+  #map-toggle-btn {
+    width: 100%; height: 100%;
+    background-color: #333; color: white; border: none; cursor: pointer;
+    font-size: 1.2rem; display: flex; align-items: center; justify-content: center;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    transition: border-radius 0.4s; 
+  }
+
+  .map-drawer.closed #map-toggle-btn { border-radius: 0 5px 5px 0; }
+  .map-drawer.open #map-toggle-btn { border-radius: 5px 0 0 5px; background-color: #555; }
+  #map-toggle-btn:hover { background-color: #000; }
+  
+  .map-content { height: 100%; width: 100%; overflow: hidden; }
+
+  /* --- GLOBALER INHALT VERSCHIEBEN --- */
+  
+  /* Dein individueller Wert: 42% */
+  body.body-map-open main, 
+  body.body-map-open .travel-container {
+    margin-left: 42% !important; 
+    width: auto !important; 
+    transition: margin-left 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  header, footer, main, .travel-container {
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    left: 0; margin-left: 0;
+  }
+
+  /* Handy Logik */
+  @media (max-width: 900px) {
+    body.body-map-open header, 
+    body.body-map-open footer, 
+    body.body-map-open main {
+      left: 0 !important; width: 100% !important; margin-left: 0 !important;
+    }
+  }
+</style>
+
+<script>
+  // 1. Karte initialisieren
+  var map = L.map('my-map').setView([-13.2350, -60.9253], 3.3);
+
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap'
+  }).addTo(map);
+
+  // ---------------------------------------------------------
+  // ROUTEN-LOGIK: GESTRICHELT BEI FLUG
+  // ---------------------------------------------------------
+
+  var travelPoints = [
+    {{ $lastCoords := "" }}
+    
+    // Sortiert nach Datum
+    {{ range .Site.RegularPages.ByDate }}
+      
+      {{ if .Params.location }}
+        
+        {{ $currCoords := printf "%v,%v" (index .Params.location 0) (index .Params.location 1) }}
+        
+        {{ if ne $currCoords $lastCoords }}
+          {
+            lat: {{ index .Params.location 0 }},
+            lng: {{ index .Params.location 1 }},
+            title: "{{ .Title }}",
+            date: "{{ .Date.Format "02.01.2006" }}",
+            
+            // --- NEU: Transportart auslesen (Standard: "ground") ---
+            transport: "{{ .Params.transport | default "ground" | lower }}",
+            
+            link: "{{ .Permalink }}"
+          },
+          {{ $lastCoords = $currCoords }}
+        {{ end }}
+
+      {{ end }}
+
+    {{ end }}
+  ];
+
+  if (travelPoints.length > 0) {
+    
+    // Wir gehen durch alle Punkte
+    for (var i = 0; i < travelPoints.length; i++) {
+      var point = travelPoints[i];
+      var loc = [point.lat, point.lng];
+
+      // A. MARKER SETZEN (immer)
+      var marker = L.marker(loc).addTo(map);
+      var popupContent = '<b>' + point.title + '</b><br>' +
+                         '<span style="color: #666; font-size: 0.9em;">📅 ' + point.date + '</span><br>' +
+                         '<a href="' + point.link + '">Zum Beitrag →</a>';
+      marker.bindPopup(popupContent);
+
+      // B. LINIE ZUM VORHERIGEN PUNKT ZEICHNEN
+      // (Wir können erst ab dem 2. Punkt eine Linie zeichnen)
+      if (i > 0) {
+        var prevPoint = travelPoints[i - 1];
+        var prevLoc = [prevPoint.lat, prevPoint.lng];
+
+        // Standard-Stil (Durchgezogen, Rot)
+        var lineStyle = {
+          color: 'red',
+          weight: 3,
+          opacity: 0.7
+        };
+
+        // WENN FLUG -> GESTRICHELT
+        // Wir prüfen, ob im aktuellen Punkt "flight" oder "flug" steht
+        if (point.transport.includes("flight") || point.transport.includes("flug")) {
+          lineStyle.dashArray = '5, 10'; // Gestrichelt
+          lineStyle.opacity = 0.5;       // Fluglinien oft etwas transparenter
+        }
+
+        // Zeichne das Segment von Gestern nach Heute
+        L.polyline([prevLoc, loc], lineStyle).addTo(map);
+      }
+    }
+  } else {
+    // Fallback
+    L.marker([-33.04674036048734, -71.61516919332927]).addTo(map)
+      .bindPopup("<b>Start der Reise!</b><br>Valparaíso, Chile.").openPopup();
+  }
+
+  // --- DRAWER FUNKTIONEN ---
+  function updateBodyState(isOpen) {
+    if (isOpen) document.body.classList.add("body-map-open");
+    else document.body.classList.remove("body-map-open");
+    setTimeout(function(){ map.invalidateSize(); }, 400); 
+  }
+
+  document.addEventListener("DOMContentLoaded", function() {
+    var drawer = document.getElementById("map-drawer");
+    if (drawer.classList.contains("open") && window.innerWidth >= 900) {
+      document.body.classList.add("body-map-open");
+    }
+  });
+
+  function toggleMap() {
+    var drawer = document.getElementById("map-drawer");
+    var btnIcon = document.getElementById("btn-icon");
+    if (drawer.classList.contains("closed")) {
+      drawer.classList.remove("closed"); drawer.classList.add("open");
+      btnIcon.innerHTML = "⬅️"; updateBodyState(true); 
+    } else {
+      drawer.classList.remove("open"); drawer.classList.add("closed");
+      btnIcon.innerHTML = "➡️"; updateBodyState(false); 
+    }
+  }
+</script>

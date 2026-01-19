@@ -1,0 +1,179 @@
+{{ define "main" }}
+
+
+
+  <article class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy nested-links {{ $.Param "text_color" | compare.Default "mid-gray" }}">
+    {{ .Content }}
+  </article>
+
+  <style>
+
+    /* --- 1. HEADER & FOOTER FIXIEREN --- */
+  
+    /* Falls der Header nicht schon durch site-header.html fixiert ist, erzwingen wir es hier: */
+    header {
+      position: fixed !important;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000; /* Ganz oben */
+      background: white; 
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    footer {
+      position: fixed !important;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000; /* Auf gleicher Höhe wie Header, über dem Inhalt */
+      background: #f4f4f4; /* Hellgrau, damit man Text darunter nicht sieht */
+      border-top: 1px solid #ddd;
+      /* Damit der Footer beim Schieben (Karte) weich gleitet: */
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    /* Der Hauptcontainer für die Timeline */
+    .timeline-container {
+      max-width: 800px; /* Begrenzte Breite für gute Lesbarkeit */
+      margin: 0 auto;   /* Zentriert den Container */
+      padding: 20px;
+      padding-top: 50px;
+
+      padding-left: 70px; 
+      padding-right: 20px;
+    }
+
+    /* Die vertikale Linie */
+    .timeline-wrapper {
+      position: relative;
+      border-left: 4px solid #ddd; /* Graue Linie */
+      padding-left: 40px; /* Abstand zwischen Linie und Text */
+    }
+
+    /* Der einzelne Beitrag */
+    .timeline-item {
+      position: relative;
+      margin-bottom: 60px; /* Abstand nach unten */
+    }
+
+    /* Der Punkt auf der Linie */
+    .timeline-marker {
+      position: absolute;
+      left: -50px; /* Muss exakt berechnet sein: -40px Padding - (Breite/2) */
+      top: 25px;   /* Etwas tiefer, damit er neben dem Titel steht */
+      width: 16px;
+      height: 16px;
+      background-color: #333;
+      border: 4px solid white; /* Weißer Rand lässt ihn freistehend wirken */
+      border-radius: 50%; /* Macht ihn rund */
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 10;
+    }
+
+    /* Mobil-Optimierung */
+    @media (max-width: 600px) {
+      .timeline-wrapper {
+        padding-left: 20px;
+        border-left: 3px solid #ddd;
+      }
+      .timeline-marker {
+        left: -28px; /* Angepasst an das kleinere Padding (20px + ca 8px) */
+        width: 12px;
+        height: 12px;
+        border: 2px solid white;
+      }
+      .timeline-container {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+
+  /* --- DAS DATUM --- */
+    .timeline-date {
+      display: flex;
+      flex-direction: column; /* Stapelt Tag und Jahr untereinander */
+      font-family: sans-serif;
+      line-height: 1.2; /* Geringer Zeilenabstand */
+    }
+
+      /* Tag & Monat (Obere Zeile) */
+    .date-day {
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    /* Jahr (Untere Zeile) */
+    .date-year {
+      font-size: 0.9rem;
+      color: #999; /* Etwas blasser */
+    }
+
+  /* DESKTOP ANSICHT (Breiter als 800px) */
+    @media (min-width: 800px) {
+      .timeline-date {
+        position: absolute;
+        left: -150px; 
+        top: 15px; /* Leicht angepasst, damit die erste Zeile auf Höhe des Punktes ist */
+        width: 100px; 
+        align-items: flex-end; /* Rechtsbündig ausrichten (zum Punkt hin) */
+        text-align: right; 
+      }
+    }
+
+    /* HANDY ANSICHT (Schmaler als 800px) */
+    @media (max-width: 799px) {
+      .timeline-date {
+        position: relative;
+        margin-bottom: 5px;
+        flex-direction: row; /* Mobil: Nebeneinander sieht oft besser aus Platzgründen aus */
+        align-items: center;
+        gap: 5px;
+      }
+      
+      /* Mobil machen wir das Jahr wieder gleich groß wie den Tag */
+      .date-year {
+        font-size: 1rem;
+        color: #555;
+      }
+      
+      /* Optional: Mobil ein Komma dazwischen mogeln */
+      .date-day::after {
+        content: ",";
+        display: inline-block;
+      }
+    }
+
+  </style>
+
+  <div class="timeline-container">
+    
+    <div class="timeline-wrapper">
+      
+      {{ $mainSections := site.Params.mainSections | compare.Default (collections.Slice "post") }}
+      {{ $section := collections.Where $.Site.RegularPages "Section" "in" $mainSections }}
+      
+      {{ range $section }}
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          
+          <time class="timeline-date">
+            <span class="date-day">{{ .Date.Format "02. Jan" }}</span>
+            <span class="date-year">{{ .Date.Format "2006" }}</span>
+          </time>
+
+          <div class="w-100 relative">
+            {{ .Render "summary-with-image" }}
+          </div>
+        </div>
+      {{ end }}
+
+    </div>
+    
+  </div>
+
+  
+  {{ partials.Include "site-map.html" .}}
+
+
+{{ end }}

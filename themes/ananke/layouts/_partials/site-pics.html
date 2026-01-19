@@ -1,0 +1,264 @@
+<div id="picture-drawer" class="picture-drawer open">
+  
+  <div class="picture-content">
+
+  {{ $imgs := slice }}
+  {{ if .Params.drawer_images }}
+    {{ $imgs = .Params.drawer_images }}
+  {{ else if .Params.drawer_image }}
+    {{ $imgs = slice .Params.drawer_image }}
+  {{ else }}
+    {{ $imgs = slice "/images/standard-karte.jpg" }}
+  {{ end }}
+
+  {{ $count := len $imgs }}
+
+  {{ $layoutClass := "mode-list" }} 
+  {{ if eq $count 1 }}
+    {{ $layoutClass = "mode-single" }}
+  {{ else if ge $count 4 }}
+    {{ $layoutClass = "mode-grid" }}
+  {{ end }}
+
+  <div class="gallery-wrapper {{ $layoutClass }}">
+    {{ range $imgs }}
+      <img src="{{ . | relURL }}" loading="lazy" class="gallery-img">
+    {{ end }}
+  </div>
+
+  {{ if gt $count 1 }}
+    <div style="height: 40px; width: 100%; float: left;"></div>
+  {{ end }}
+
+</div>
+
+  <div class="picture-toggle-btn-wrapper">
+    <button id="picture-toggle-btn" onclick="togglePicture()" title="Bild auf/zu">
+      <span id="btn-icon">⬅️</span>
+    </button>
+  </div>
+
+</div>
+
+<style>
+  /* --- 1. Die Schublade (Drawer) --- */
+  .picture-drawer {
+    position: fixed;
+    top: 60px; /* Header Höhe */
+    left: 0;
+    bottom: 0;
+    width: 40%;
+    max-width: 85vw;
+    z-index: 900; 
+    background: #f4f4f4;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.15);
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  /* ZUSTAND: ZU */
+  .picture-drawer.closed {
+    transform: translateX(-100%); 
+  }
+
+  /* ZUSTAND: AUF */
+  .picture-drawer.open {
+    transform: translateX(0);
+  }
+
+  /* --- GALERIE / SCROLLING --- */
+  
+  /* --- BASIS CONTAINER --- */
+  .picture-content {
+    height: 100%;
+    width: 100%;
+    background-color: #222;
+    overflow-y: auto; /* Scrollen erlauben */
+    scrollbar-width: none; /* Firefox Scrollbar weg */
+    -ms-overflow-style: none;
+  }
+  .picture-content::-webkit-scrollbar { display: none; }
+
+  /* Basis für ALLE Bilder */
+  .gallery-img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    margin: 0;
+  }
+
+  /* --- MODUS 1: EINZELBILD (Single) --- */
+  /* Das Bild soll einfach den ganzen Platz füllen, kein Scrollen nötig */
+  .gallery-wrapper.mode-single {
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Scrollen verhindern */
+  }
+  .gallery-wrapper.mode-single .gallery-img {
+    height: 100%; /* Volle Höhe */
+  }
+
+  /* --- MODUS 2: LISTE (2-3 Bilder) --- */
+  /* Bilder untereinander, volle Breite, scrollbar */
+  .gallery-wrapper.mode-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0px; /* Dünner schwarzer Strich zwischen Bildern */
+  }
+  .gallery-wrapper.mode-list .gallery-img {
+    height: auto; /* Höhe passt sich dem Bild an */
+    min-height: 50vh; /* Jedes Bild nimmt mindestens halben Bildschirm ein */
+  }
+
+  /* --- MODUS 3: RASTER (Ab 4 Bilder) --- */
+  /* 2 Spalten nebeneinander */
+  .gallery-wrapper.mode-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Zwei gleich große Spalten */
+    grid-auto-rows: 1fr; /* Versucht Zeilen gleich hoch zu machen */
+    gap: 0px; /* Dünner Strich zwischen Kacheln */
+  }
+  
+  .gallery-wrapper.mode-grid .gallery-img {
+    width: 100%;
+    height: 100%;
+    /* WICHTIG: Damit das Raster gleichmäßig aussieht, erzwingen wir Quadrate */
+    aspect-ratio: 1 / 1; 
+  }
+  
+  /* Optional: Das allererste Bild im Raster trotzdem groß (volle Breite)? */
+  /* Wenn du das nicht willst, lösche den Block hier drunter einfach */
+  .gallery-wrapper.mode-grid .gallery-img:first-child {
+    grid-column: span 2; /* Geht über beide Spalten */
+    aspect-ratio: 16 / 9; /* Breitbild Format für das Highlight */
+  }
+
+
+
+  /* --- 3. Der Button-Container --- */
+  .picture-toggle-btn-wrapper {
+    position: absolute;
+    top: 50%; 
+    transform: translateY(-50%); 
+    width: 40px;
+    height: 40px;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 2000;
+  }
+
+  /* Wenn ZU: Button raus */
+  .picture-drawer.closed .picture-toggle-btn-wrapper {
+    right: -40px; 
+  }
+
+  /* Wenn AUF: Button rein */
+  .picture-drawer.open .picture-toggle-btn-wrapper {
+    right: 0; 
+  }
+
+  /* --- 4. Button Styling --- */
+  #picture-toggle-btn {
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    transition: border-radius 0.4s; 
+  }
+
+  .picture-drawer.closed #picture-toggle-btn {
+    border-radius: 0 5px 5px 0;
+  }
+
+  .picture-drawer.open #picture-toggle-btn {
+    border-radius: 5px 0 0 5px; 
+    background-color: rgba(0,0,0,0.6); /* Transparent über dem Bild */
+  }
+
+  #picture-toggle-btn:hover {
+    background-color: #000;
+  }
+  
+
+  /* --- 5. INHALT VERSCHIEBEN (Body-Shift) --- */
+  
+  /* Wenn Klasse "body-picture-open" gesetzt ist: */
+  body.body-picture-open main, 
+  body.body-picture-open .travel-container {
+    margin-left: 40% !important; /* Inhalt nach rechts schieben */
+    width: auto !important; 
+    transition: margin-left 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  /* Standard-Zustand */
+  header, footer, main, .travel-container {
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    left: 0; 
+    margin-left: 0; 
+  }
+
+  /* Mobil: Kein Schieben */
+  @media (max-width: 900px) {
+    body.body-picture-open header, 
+    body.body-picture-open footer, 
+    body.body-picture-open main {
+      left: 0 !important;
+      width: 100% !important;
+      margin-left: 0 !important;
+    }
+    .picture-drawer { width: 85%; } /* Mobil breiter */
+  }
+
+  footer {
+    position: fixed;
+    z-index: 2500 !important; /* Brutal hoch, damit er über ALLEM liegt (auch über dem Bild) */
+  }
+
+</style>
+
+
+<script>
+  // Funktion: Body-Klasse setzen/entfernen
+  function updateBodyState(isOpen) {
+    if (isOpen) {
+      document.body.classList.add("body-picture-open");
+    } else {
+      document.body.classList.remove("body-picture-open");
+    }
+  }
+
+  // Initiale Prüfung beim Laden
+  document.addEventListener("DOMContentLoaded", function() {
+    var drawer = document.getElementById("picture-drawer");
+    
+    // Checken ob Drawer offen ist und Screen groß genug
+    if (drawer.classList.contains("open") && window.innerWidth >= 900) {
+      document.body.classList.add("body-picture-open");
+    }
+  });
+
+  // Toggle Funktion
+  function togglePicture() {
+    var drawer = document.getElementById("picture-drawer");
+    var btnIcon = document.getElementById("btn-icon");
+    
+    if (drawer.classList.contains("closed")) {
+      // ÖFFNEN
+      drawer.classList.remove("closed");
+      drawer.classList.add("open");
+      btnIcon.innerHTML = "⬅️"; 
+      updateBodyState(true); 
+    } else {
+      // SCHLIEßEN
+      drawer.classList.remove("open");
+      drawer.classList.add("closed");
+      btnIcon.innerHTML = "➡️"; 
+      updateBodyState(false); 
+    }
+  }
+</script>
