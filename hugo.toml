@@ -1,4 +1,4 @@
-baseURL = 'https://github.com/jojoStar007/travelblog2026.git/'
+baseURL = 'https://jojoStar007.github.io/'
 languageCode = 'en-us-fr-es'
 title = 'blogStolz'
 theme = 'ananke'
