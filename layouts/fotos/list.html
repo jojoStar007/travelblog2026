@@ -1,0 +1,103 @@
+{{ define "main" }}
+<div class="pa3 pa4-ns w-100 center gallery-spacer">
+  
+    <div class="global-gallery-grid">
+    {{ $galleryPage := . }}
+    {{ range .Site.RegularPages }}
+      {{ $postLink := .RelPermalink }}
+      {{ $postTitle := .Title }}
+      {{ $btnText := $galleryPage.Params.zum_beitrag | default "Mehr lesen" }}
+
+
+      {{ with .Params.featured_image }}
+        <a href="{{ . | relURL }}" 
+           class="gallery-item group"
+           data-fancybox="gallery"
+           data-caption="<strong>{{ $postTitle }}</strong><br><a href='{{ $postLink }}' style='color: white; text-decoration: underline;'> {{ $btnText }} →</a>">
+           
+          <img src="{{ . | relURL }}" loading="lazy" class="gallery-img">
+          
+      <!--    <div class="overlay"><span class="overlay-text">{{ $postTitle }}</span></div> -->
+        </a>
+      {{ end }}
+
+      {{ if .Params.drawer_images }}
+        {{ range .Params.drawer_images }}
+          
+          <a href="{{ . | relURL }}" 
+             class="gallery-item group"
+             data-fancybox="gallery"
+             data-caption="<strong>{{ $postTitle }}</strong> (Galerie)<br><a href='{{ $postLink }}' style='color: white; text-decoration: underline;'>{{ $btnText }}→</a>">
+             
+            <img src="{{ . | relURL }}" loading="lazy" class="gallery-img">
+            
+     <!--       <div class="overlay"><span class="overlay-text">{{ $postTitle }}</span></div>	-->
+          </a>
+
+        {{ end }}
+      {{ end }}
+
+    {{ end }}
+  </div>
+</div>
+
+<style>
+  /* ... hier einfach deinen Style von vorhin lassen ... */
+  .gallery-spacer { padding-top: 70px; min-height: 100vh; }
+  @media (max-width: 600px) { .gallery-spacer { padding-top: 90px; } }
+  .global-gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; }
+  .gallery-item { display: block; position: relative; aspect-ratio: 1 / 1; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s; }
+  .gallery-item:hover { transform: translateY(-5px); z-index: 10; }
+  .gallery-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
+  .gallery-item:hover .gallery-img { transform: scale(1.1); }
+  .overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); opacity: 0; transition: opacity 0.3s; display: flex; align-items: center; justify-content: center; padding: 10px; text-align: center; }
+  .gallery-item:hover .overlay { opacity: 1; }
+  .overlay-text { color: white; font-weight: bold; font-size: 1rem; }
+
+  /* --- NEU: ABSTAND FÜR DEN HEADER --- */
+  .gallery-spacer {
+    padding-top: 90px; /* Schiebt alles unter dem Header hervor */
+    min-height: 100vh;  /* Damit der Footer nicht hochrutscht, wenn wenig Bilder da sind */
+  }
+
+  /* Auf dem Handy etwas weniger Abstand */
+  @media (max-width: 600px) {
+    .gallery-spacer {
+      padding-top: 90px;
+    }
+  }
+
+  /* --- RASTER DESIGN (wie vorher) --- */
+  .global-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+  }
+
+  .gallery-item {
+    display: block; position: relative; aspect-ratio: 1 / 1; 
+    overflow: hidden; border-radius: 8px; 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s;
+  }
+
+  .gallery-item:hover { transform: translateY(-5px); z-index: 10; }
+
+  .gallery-img {
+    width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s;
+  }
+  .gallery-item:hover .gallery-img { transform: scale(1.1); }
+
+
+/*
+  .overlay {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.5); opacity: 0; transition: opacity 0.3s;
+    display: flex; align-items: center; justify-content: center; padding: 10px; text-align: center;
+  }
+
+  .gallery-item:hover .overlay { opacity: 1; }
+  .overlay-text { color: white; font-weight: bold; font-size: 1rem; }
+*/
+
+</style>
+{{ end }}

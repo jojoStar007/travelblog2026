@@ -1,0 +1,63 @@
+baseURL = 'https://github.com/jojoStar007/travelblog2026.git/'
+languageCode = 'en-us-fr-es'
+title = 'blogStolz'
+theme = 'ananke'
+
+[[menu.main]]
+  identifier = "fotos"
+  name = "Fotogalerie"
+  url = "/fotos/"
+  weight = 20  # Bestimmt die Position (je höher, desto weiter rechts)
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
+
+
+# Standard-Sprache (falls nichts angegeben ist)
+defaultContentLanguage = "en"
+
+[languages]
+  [languages.de]
+    languageName = "Deutsch"
+    weight = 1
+    title = "Mein Reiseblog" # Titel auf Deutsch
+    # Dein deutsches Menü
+    [[languages.de.menu.main]]
+      identifier = "fotos"
+      name = "Fotogalerie"
+      pageRef = "fotos"
+      weight = 20
+
+  [languages.en]
+    languageName = "English"
+    weight = 2
+    title = "My Travel Blog" # Titel auf Englisch
+    # Dein englisches Menü
+    [[languages.en.menu.main]]
+      identifier = "fotos"
+      name = "Photo Gallery"
+      pageRef = "fotos"
+      weight = 20
+
+
+[languages.fr]
+    languageName = "Francais"
+    weight = 3
+    title = "Mon voyage"
+    [[languages.fr.menu.main]]
+      identifier = "fotos"
+      name = "gallerie de fotos"
+      pageRef = "fotos"
+      weight = 20
+
+
+[languages.es]
+    languageName = "Espanol"
+    weight = 4
+    title = "Mi Blog de Viaje"
+    [[languages.es.menu.main]]
+      identifier = "fotos"
+      name = "galeria de fotos"
+      pageRef = "fotos"
+      weight = 20

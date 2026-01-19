@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <sitemap>
+    <loc>http://localhost:1313/jojoStar007/travelblog2026.git/de/sitemap.xml</loc>
+    
+      <lastmod>2026-01-14T21:58:55+01:00</lastmod>
+    
+  </sitemap>
+  
+  <sitemap>
+    <loc>http://localhost:1313/jojoStar007/travelblog2026.git/en/sitemap.xml</loc>
+    
+      <lastmod>2026-01-14T21:58:55+01:00</lastmod>
+    
+  </sitemap>
+  
+  <sitemap>
+    <loc>http://localhost:1313/jojoStar007/travelblog2026.git/fr/sitemap.xml</loc>
+    
+      <lastmod>2026-01-14T21:58:55+01:00</lastmod>
+    
+  </sitemap>
+  
+  <sitemap>
+    <loc>http://localhost:1313/jojoStar007/travelblog2026.git/es/sitemap.xml</loc>
+    
+      <lastmod>2026-01-14T21:58:55+01:00</lastmod>
+    
+  </sitemap>
+  
+</sitemapindex>

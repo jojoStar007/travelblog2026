@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>My Travel Blog</title>
+    <link>http://localhost:1313/jojoStar007/travelblog2026.git/</link>
+    <description>Recent content on My Travel Blog</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 14 Jan 2026 21:58:55 +0100</lastBuildDate>
+    <atom:link href="http://localhost:1313/jojoStar007/travelblog2026.git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My second Post (test.md)</title>
+      <link>http://localhost:1313/jojoStar007/travelblog2026.git/posts/test/</link>
+      <pubDate>Wed, 14 Jan 2026 21:58:55 +0100</pubDate>
+      <guid>http://localhost:1313/jojoStar007/travelblog2026.git/posts/test/</guid>
+      <description>&lt;h2 id=&#34;how-to-build-a-blog&#34;&gt;How to build a blog?!&lt;/h2&gt;&#xA;&lt;p&gt;This is &lt;strong&gt;bold&lt;/strong&gt; text, and this is &lt;em&gt;emphasized&lt;/em&gt; text.&lt;/p&gt;&#xA;&lt;p&gt;Visit the &lt;a href=&#34;https://gohugo.io&#34;&gt;Hugo&lt;/a&gt; website!&lt;/p&gt;&#xA;&lt;p&gt;Hello&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>My First Post</title>
+      <link>http://localhost:1313/jojoStar007/travelblog2026.git/posts/my-first-post/</link>
+      <pubDate>Wed, 14 Jan 2026 21:35:46 +0100</pubDate>
+      <guid>http://localhost:1313/jojoStar007/travelblog2026.git/posts/my-first-post/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;This is &lt;strong&gt;bold&lt;/strong&gt; text, and this is &lt;em&gt;emphasized&lt;/em&gt; text.&lt;/p&gt;&#xA;&lt;p&gt;Visit the &lt;a href=&#34;https://gohugo.io&#34;&gt;Hugo&lt;/a&gt; website!&lt;/p&gt;&#xA;&lt;p&gt;Hallooooooo&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
