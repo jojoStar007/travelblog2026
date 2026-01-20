@@ -29,8 +29,16 @@
 
     <div class="flex-grow-1 tr mr3">
        <a class="link dim white-80 hover-white f6" href="/travelblog2026/fotos/">
-         Fotogalerie
-       </a>
+  		{{ if eq .Lang "de" }}
+    			Fotogalerie
+  		{{ else if eq .Lang "es" }}
+   			 Galería de fotos
+  		{{ else if eq .Lang "fr" }}
+   			 Galerie photos
+  		{{ else }}
+ 			   Photo Gallery
+  		{{ end }}
+	</a>
     </div>
 
     <div class="lang-dropdown pointer">
