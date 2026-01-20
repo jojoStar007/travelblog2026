@@ -84,8 +84,102 @@
   }
 </style><body class="ma0 avenir bg-near-white development">
 
-    <header class="w-100 pa3 ph5-ns bg-black bb b--black-10" style="position: fixed; top: 0; left: 0; z-index: 999; height: 70px; display: flex; align-items: center;">
-  <div class="db dt-l w-100 border-box">
+    <style>
+   
+  .lang-dropdown { position: relative; display: inline-block; }
+  .lang-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: #000;  
+    min-width: 50px;  
+    z-index: 9999;
+    border: 1px solid #333;
+    padding: 5px;
+    text-align: center;
+  }
+   
+  .lang-dropdown:hover .lang-content, .lang-dropdown:focus-within .lang-content {
+    display: block;
+  }
+</style>
+
+<header class="w-100 pa3 ph5-ns bg-black bb b--black-10" style="position: fixed; top: 0; left: 0; z-index: 999; height: 70px; display: flex; align-items: center;">
+
+  <div class="w-100 flex justify-between items-center dn-l">
+    
+    <a class="link dim white f4 fw6 truncate mr2" href="/travelblog2026/">
+      My Travel Blog
+    </a>
+
+    <div class="flex-grow-1 tr mr3">
+       <a class="link dim white-80 hover-white f6" href="/travelblog2026/fotos/">
+         Fotogalerie
+       </a>
+    </div>
+
+    <div class="lang-dropdown pointer">
+      
+      <div class="dim pa1">
+         
+         
+         
+         
+         <img src="https://flagcdn.com/w40/gb.png" 
+              alt="en" 
+              style="height: 25px; width: auto; display: block;">
+      </div>
+
+      <div class="lang-content shadow-5">
+        
+          
+          
+          
+
+          <a href="/travelblog2026/de/tags/" class="db pv2 hover-bg-dark-gray">
+             <img src="https://flagcdn.com/w40/de.png" 
+                  alt="de" 
+                  style="width: 25px; height: auto; display: block; margin: 0 auto;">
+          </a>
+        
+          
+          
+          
+
+          <a href="/travelblog2026/tags/" class="db pv2 hover-bg-dark-gray">
+             <img src="https://flagcdn.com/w40/gb.png" 
+                  alt="en" 
+                  style="width: 25px; height: auto; display: block; margin: 0 auto;">
+          </a>
+        
+          
+          
+          
+
+          <a href="/travelblog2026/fr/tags/" class="db pv2 hover-bg-dark-gray">
+             <img src="https://flagcdn.com/w40/fr.png" 
+                  alt="fr" 
+                  style="width: 25px; height: auto; display: block; margin: 0 auto;">
+          </a>
+        
+          
+          
+          
+
+          <a href="/travelblog2026/es/tags/" class="db pv2 hover-bg-dark-gray">
+             <img src="https://flagcdn.com/w40/es.png" 
+                  alt="es" 
+                  style="width: 25px; height: auto; display: block; margin: 0 auto;">
+          </a>
+        
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="dn db-l dt-l w-100 border-box">
     
     <a class="db dtc-l v-mid white link dim w-100 w-25-l tc tl-l mb2 mb0-l" href="/travelblog2026/" title="Home">
       <span class="f5 f4-ns fw6 mt0 mb1">My Travel Blog</span>
@@ -98,10 +192,62 @@
             Photo Gallery
           </a>
         
+
+        
+           <div class="dib pl3 bl b--white-30" style="vertical-align: middle;">
+            
+              
+              
+              
+
+              <a href="/travelblog2026/de/tags/" class="dib mh2 dim" title="Deutsch">
+                 <img src="https://flagcdn.com/w40/de.png" 
+                      alt="de" 
+                      style="width: 25px; height: auto; display: block;">
+              </a>
+            
+              
+              
+              
+
+              <a href="/travelblog2026/tags/" class="dib mh2 dim" title="English">
+                 <img src="https://flagcdn.com/w40/gb.png" 
+                      alt="en" 
+                      style="width: 25px; height: auto; display: block;">
+              </a>
+            
+              
+              
+              
+
+              <a href="/travelblog2026/fr/tags/" class="dib mh2 dim" title="Francais">
+                 <img src="https://flagcdn.com/w40/fr.png" 
+                      alt="fr" 
+                      style="width: 25px; height: auto; display: block;">
+              </a>
+            
+              
+              
+              
+
+              <a href="/travelblog2026/es/tags/" class="dib mh2 dim" title="Espanol">
+                 <img src="https://flagcdn.com/w40/es.png" 
+                      alt="es" 
+                      style="width: 25px; height: auto; display: block;">
+              </a>
+            
+          </div>
+        
+
       </nav>
     
+    
+  </div>
 
-/*Für Handy: Sprachauswahl im Header*/
+</header>
+
+
+
 
     
   </div>
@@ -141,13 +287,13 @@
 <div style="position: fixed; top: 75px; right: 0; z-index: 9999; display: flex; flex-direction: column; gap: 5px; align-items: flex-end;">
   
   
-    
+    	
       
       
       
       
 
-      <a href="/travelblog2026/de/" 
+      <a href="/travelblog2026/de/tags/" 
          title="Deutsch"
          class="flag-btn "
       >
@@ -157,13 +303,13 @@
          
       </a>
 
-    
+    	
       
       
       
       
 
-      <a href="/travelblog2026/" 
+      <a href="/travelblog2026/tags/" 
          title="English"
          class="flag-btn active"
       >
@@ -173,13 +319,13 @@
          
       </a>
 
-    
+    	
       
       
       
       
 
-      <a href="/travelblog2026/fr/" 
+      <a href="/travelblog2026/fr/tags/" 
          title="Francais"
          class="flag-btn "
       >
@@ -189,13 +335,13 @@
          
       </a>
 
-    
+    	
       
       
       
       
 
-      <a href="/travelblog2026/es/" 
+      <a href="/travelblog2026/es/tags/" 
          title="Espanol"
          class="flag-btn "
       >
@@ -275,6 +421,7 @@
     }
   }
 </style> 
+
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"/>
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>

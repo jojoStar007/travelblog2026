@@ -98,29 +98,7 @@
 
 
 
-<div style="position: fixed; top: 75px; right: 0; z-index: 9999; display: flex; flex-direction: column; gap: 5px; align-items: flex-end;">
-  
-  {{ if hugo.IsMultilingual }}
-    {{ range .AllTranslations }}	<!--range .Site.Home.AllTranslations -> führt bei Sprachwechsel immer zu Home -->
-      
-      {{ $langCode := .Lang | lower }}
-      {{ $flagCode := $langCode }}
-      {{ if eq $langCode "en" }}{{ $flagCode = "gb" }}{{ end }}
 
-      <a href="{{ .RelPermalink }}" 
-         title="{{ .Language.LanguageName }}"
-         class="flag-btn {{ if eq .Lang $.Lang }}active{{ end }}"
-      >
-         <img src="https://flagcdn.com/w40/{{ $flagCode }}.png" 
-              alt="{{ $langCode }}" 
-              style="width: 25px; height: auto; display: block;">
-         
-      </a>
-
-    {{ end }}
-  {{ end }}
-
-</div>
 
 <style>
   .flag-btn {
@@ -187,6 +165,7 @@
     }
   }
 </style> 
+
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"/>
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
