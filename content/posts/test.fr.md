@@ -1,12 +1,11 @@
 +++
-date = '2026-01-14T21:58:55+01:00'
+date = '2025-08-14T21:58:55+01:00'
 draft = true
 title = 'My second Post (test.md)'
-drawer_image = '/images/dein-bild.jpg'
-featured_image = '/images/platzhalter.jpg'
+featured_image = '/travelblog2026/images/platzhalter.jpg'
 
 # NEU: Liste für die Galerie-Schublade
-drawer_images = ['/images/platzhalter.jpg', '/images/platzhalter-quer.jpg', '/images/dein-bild.jpg', '/images/1.jpg', '/images/2.jpg']
+drawer_images = ['/travelblog2026/images/platzhalter.jpg', '/travelblog2026/images/dein-bild.jpg', '/travelblog2026/images/1.jpg', '/travelblog2026/images/2.jpg']
 
 # Format: [Breitengrad, Längengrad]
 location = [-33.44714803139875, -70.68755529992848]

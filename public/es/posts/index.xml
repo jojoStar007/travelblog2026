@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Mi Blog de Viajes</title>
-    <link>http://localhost:1313/travelblog2026/es/</link>
-    <description>Recent content on Mi Blog de Viajes</description>
+    <title>Posts on Mi Blog de Viajes</title>
+    <link>http://localhost:1313/travelblog2026/es/posts/</link>
+    <description>Recent content in Posts on Mi Blog de Viajes</description>
     <generator>Hugo</generator>
     <language>es</language>
-    <lastBuildDate>Thu, 14 Aug 2025 21:58:55 +0100</lastBuildDate>
-    <atom:link href="http://localhost:1313/travelblog2026/es/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 14 Jan 2026 21:58:55 +0100</lastBuildDate>
+    <atom:link href="http://localhost:1313/travelblog2026/es/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>My second Post (test.md)</title>
       <link>http://localhost:1313/travelblog2026/es/posts/test/</link>
-      <pubDate>Thu, 14 Aug 2025 21:58:55 +0100</pubDate>
+      <pubDate>Wed, 14 Jan 2026 21:58:55 +0100</pubDate>
       <guid>http://localhost:1313/travelblog2026/es/posts/test/</guid>
       <description>&lt;h2 id=&#34;how-to-build-a-blog&#34;&gt;How to build a blog?!&lt;/h2&gt;&#xA;&lt;p&gt;This is &lt;strong&gt;bold&lt;/strong&gt; text, and this is &lt;em&gt;emphasized&lt;/em&gt; text.&lt;/p&gt;&#xA;&lt;p&gt;Visit the &lt;a href=&#34;https://gohugo.io&#34;&gt;Hugo&lt;/a&gt; website!&lt;/p&gt;&#xA;&lt;p&gt;Hola&lt;/p&gt;</description>
     </item>

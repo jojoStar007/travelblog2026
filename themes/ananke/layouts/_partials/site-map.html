@@ -7,7 +7,7 @@
   </div>
 
   <div class="map-toggle-btn-wrapper">
-    <button id="map-toggle-btn" onclick="toggleMap()" title="Karte auf/zu">
+    <button id="map-toggle-btn" onclick="toggleMap()" title="">
       <span id="btn-icon">⬅️</span>
     </button>
   </div>
@@ -143,9 +143,21 @@
 
       // A. MARKER SETZEN (immer)
       var marker = L.marker(loc).addTo(map);
-      var popupContent = '<b>' + point.title + '</b><br>' +
-                         '<span style="color: #666; font-size: 0.9em;">📅 ' + point.date + '</span><br>' +
-                         '<a href="' + point.link + '">Zum Beitrag →</a>';
+      var popupContent = `
+    	<b>${point.title}</b><br>
+    	<span style="color: #666; font-size: 0.9em;">📅 ${point.date}</span><br>
+    	<a href="${point.link}">
+      		{{ if eq .Lang "de" }}
+        		Zum Blogeintrag →
+      		{{ else if eq .Lang "es" }}
+        		Leer la entrada →
+      		{{ else if eq .Lang "fr" }}
+        		Lire l'article →
+      		{{ else }}
+        		Go to post →
+      		{{ end }}
+    	</a>
+  `;
       marker.bindPopup(popupContent);
 
       // B. LINIE ZUM VORHERIGEN PUNKT ZEICHNEN

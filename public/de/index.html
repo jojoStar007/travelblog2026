@@ -49,8 +49,6 @@
   <meta property="og:type" content="website">
 
   <meta itemprop="name" content="Mein Reiseblog">
-  <meta itemprop="datePublished" content="2026-01-14T21:58:55+01:00">
-  <meta itemprop="dateModified" content="2026-01-14T21:58:55+01:00">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Mein Reiseblog">
 
@@ -422,8 +420,8 @@
           <div class="timeline-marker"></div>
           
           <time class="timeline-date">
-            <span class="date-day">14. Jan</span>
-            <span class="date-year">2026</span>
+            <span class="date-day">14. Aug.</span>
+            <span class="date-year">2025</span>
           </time>
 
           <div class="w-100 relative">
@@ -435,7 +433,7 @@
           
         <div class="pr3-ns mb4 mb0-ns w-100 w-40-ns">
           <a href="/travelblog2026/de/posts/test/" class="db grow">
-            <img src="http://localhost:1313/travelblog2026/images/platzhalter.jpg" class="img" alt="image from My second Post (test.md)">
+            <img src="/travelblog2026/images/platzhalter.jpg" class="img" alt="image from My second Post (test.md)">
           </a>
         </div>
       
@@ -475,7 +473,7 @@
   </div>
 
   <div class="map-toggle-btn-wrapper">
-    <button id="map-toggle-btn" onclick="toggleMap()" title="Karte auf/zu">
+    <button id="map-toggle-btn" onclick="toggleMap()" title="">
       <span id="btn-icon">⬅️</span>
     </button>
   </div>
@@ -587,7 +585,7 @@
             lat:  -33.44714803139875 ,
             lng:  -70.68755529992848 ,
             title: "My second Post (test.md)",
-            date: "14.01.2026",
+            date: "14.08.2025",
             
             
             transport: "ground",
@@ -611,9 +609,15 @@
 
       
       var marker = L.marker(loc).addTo(map);
-      var popupContent = '<b>' + point.title + '</b><br>' +
-                         '<span style="color: #666; font-size: 0.9em;">📅 ' + point.date + '</span><br>' +
-                         '<a href="' + point.link + '">Zum Beitrag →</a>';
+      var popupContent = `
+    	<b>${point.title}</b><br>
+    	<span style="color: #666; font-size: 0.9em;">📅 ${point.date}</span><br>
+    	<a href="${point.link}">
+      		
+        		Zum Blogeintrag →
+      		
+    	</a>
+  `;
       marker.bindPopup(popupContent);
 
       
@@ -676,7 +680,7 @@
 
 
     </main>
-    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+    <footer class="bg-black bottom-0 w-100 pa3 dn db-ns" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="http://localhost:1313/travelblog2026/de/" >
     &copy;  Mein Reiseblog 2026 
@@ -685,7 +689,6 @@
 </div>
   </div>
 </footer>
-
 
 
 

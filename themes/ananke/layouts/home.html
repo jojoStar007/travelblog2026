@@ -158,7 +158,7 @@
           <div class="timeline-marker"></div>
           
           <time class="timeline-date">
-            <span class="date-day">{{ .Date.Format "02. Jan" }}</span>
+            <span class="date-day">{{ .Date | time.Format "02. Jan" }}</span>
             <span class="date-year">{{ .Date.Format "2006" }}</span>
           </time>
 

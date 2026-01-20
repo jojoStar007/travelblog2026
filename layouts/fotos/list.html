@@ -9,6 +9,7 @@
       {{ $btnText := $galleryPage.Params.zum_beitrag | default "Mehr lesen" }}
 
 
+{{/*
       {{ with .Params.featured_image }}
         <a href="{{ . | relURL }}" 
            class="gallery-item group"
@@ -20,6 +21,8 @@
       <!--    <div class="overlay"><span class="overlay-text">{{ $postTitle }}</span></div> -->
         </a>
       {{ end }}
+
+*/}}
 
       {{ if .Params.drawer_images }}
         {{ range .Params.drawer_images }}
