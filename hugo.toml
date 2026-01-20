@@ -44,10 +44,10 @@ defaultContentLanguage = "en"
 [languages.fr]
     languageName = "Francais"
     weight = 3
-    title = "Mon voyage"
+    title = "Mon Blog de Voyage"
     [[languages.fr.menu.main]]
       identifier = "fotos"
-      name = "gallerie de fotos"
+      name = "Galerie Photos"
       pageRef = "fotos"
       weight = 20
 
@@ -55,9 +55,9 @@ defaultContentLanguage = "en"
 [languages.es]
     languageName = "Espanol"
     weight = 4
-    title = "Mi Blog de Viaje"
+    title = "Mi Blog de Viajes"
     [[languages.es.menu.main]]
       identifier = "fotos"
-      name = "galeria de fotos"
+      name = "Galería de Fotos"
       pageRef = "fotos"
       weight = 20

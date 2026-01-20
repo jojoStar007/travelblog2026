@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Mon voyage</title>
+    <title>Mon Blog de Voyage</title>
     <link>http://localhost:1313/travelblog2026/fr/</link>
-    <description>Recent content on Mon voyage</description>
+    <description>Recent content on Mon Blog de Voyage</description>
     <generator>Hugo</generator>
     <language>fr</language>
     <lastBuildDate>Wed, 14 Jan 2026 21:58:55 +0100</lastBuildDate>

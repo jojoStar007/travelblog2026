@@ -1,3 +1,109 @@
+<style>
+  /* CSS NUR für das Mobile Dropdown-Menü */
+  .lang-dropdown { position: relative; display: inline-block; }
+  .lang-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: #000; /* Schwarz */
+    min-width: 50px; /* Etwas breiter für die Flaggen */
+    z-index: 9999;
+    border: 1px solid #333;
+    padding: 5px;
+    text-align: center;
+  }
+  /* Zeige Menü beim Antippen/Hover */
+  .lang-dropdown:hover .lang-content, .lang-dropdown:focus-within .lang-content {
+    display: block;
+  }
+</style>
+
+<header class="w-100 pa3 ph5-ns bg-black bb b--black-10" style="position: fixed; top: 0; left: 0; z-index: 999; height: 70px; display: flex; align-items: center;">
+
+  <div class="w-100 flex justify-between items-center dn-l">
+    
+    <a class="link dim white f4 fw6 truncate mr2" href="{{ .Site.Home.RelPermalink }}">
+      {{ .Site.Title }}
+    </a>
+
+    <div class="flex-grow-1 tr mr3">
+       <a class="link dim white-80 hover-white f6" href="/travelblog2026/fotos/">
+         Fotogalerie
+       </a>
+    </div>
+
+    <div class="lang-dropdown pointer">
+      
+      <div class="dim pa1">
+         {{ $currentLang := $.Lang }}
+         {{ $currentFlag := $currentLang }}
+         {{ if eq $currentLang "en" }}{{ $currentFlag = "gb" }}{{ end }}
+         
+         <img src="https://flagcdn.com/w40/{{ $currentFlag }}.png" 
+              alt="{{ $currentLang }}" 
+              style="height: 25px; width: auto; display: block;">
+      </div>
+
+      <div class="lang-content shadow-5">
+        {{ range .AllTranslations }}
+          {{ $loopLang := .Lang }}
+          {{ $loopFlag := $loopLang }}
+          {{ if eq $loopLang "en" }}{{ $loopFlag = "gb" }}{{ end }}
+
+          <a href="{{ .RelPermalink }}" class="db pv2 hover-bg-dark-gray">
+             <img src="https://flagcdn.com/w40/{{ $loopFlag }}.png" 
+                  alt="{{ $loopLang }}" 
+                  style="width: 25px; height: auto; display: block; margin: 0 auto;">
+          </a>
+        {{ end }}
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="dn db-l dt-l w-100 border-box">
+    
+    <a class="db dtc-l v-mid white link dim w-100 w-25-l tc tl-l mb2 mb0-l" href="{{ .Site.Home.RelPermalink }}" title="Home">
+      <span class="f5 f4-ns fw6 mt0 mb1">{{ .Site.Title }}</span>
+    </a>
+
+    {{ if .Site.Menus.main }}
+      <nav class="db dtc-l v-mid w-100 w-75-l tc tr-l">
+        {{ range .Site.Menus.main }}
+          <a class="link dim dark-gray f6 f5-l dib mr3 mr4-l" href="{{ .URL }}" title="{{ .Name }}">
+            {{ .Name }}
+          </a>
+        {{ end }}
+
+        {{ if hugo.IsMultilingual }}
+           <div class="dib pl3 bl b--white-30" style="vertical-align: middle;">
+            {{ range .AllTranslations }}
+              {{ $code := .Lang }}
+              {{ $flag := $code }}
+              {{ if eq $code "en" }}{{ $flag = "gb" }}{{ end }}
+
+              <a href="{{ .RelPermalink }}" class="dib mh2 dim" title="{{ .Language.LanguageName }}">
+                 <img src="https://flagcdn.com/w40/{{ $flag }}.png" 
+                      alt="{{ $code }}" 
+                      style="width: 25px; height: auto; display: block;">
+              </a>
+            {{ end }}
+          </div>
+        {{ end }}
+
+      </nav>
+    {{ end }}
+    
+  </div>
+
+</header>
+
+
+
+<!--
+
 <header class="w-100 pa3 ph5-ns bg-black bb b--black-10" style="position: fixed; top: 0; left: 0; z-index: 999; height: 70px; display: flex; align-items: center;">
   <div class="db dt-l w-100 border-box">
     
@@ -16,7 +122,7 @@
     {{ end }}
 
 /*Für Handy: Sprachauswahl im Header*/
-
+<!--
 {{ if hugo.IsMultilingual }}
       <div class="dib pl3 bl b--white-30 mobile-language-menu">
         {{ range .Site.Home.AllTranslations }}
@@ -26,7 +132,7 @@
         {{ end }}
       </div>
     {{ end }}
-
+-->
     
   </div>
 </header>

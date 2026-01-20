@@ -101,7 +101,7 @@
 <div style="position: fixed; top: 75px; right: 0; z-index: 9999; display: flex; flex-direction: column; gap: 5px; align-items: flex-end;">
   
   {{ if hugo.IsMultilingual }}
-    {{ range .Site.Home.AllTranslations }}
+    {{ range .AllTranslations }}	<!--range .Site.Home.AllTranslations -> führt bei Sprachwechsel immer zu Home -->
       
       {{ $langCode := .Lang | lower }}
       {{ $flagCode := $langCode }}
