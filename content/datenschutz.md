@@ -1,7 +1,7 @@
 ---
 title: "Datenschutzerklärung"
 date: 2026-01-22
-draft: false
+draft: true
 layout: "page"
 hide_drawer: true
 ---
