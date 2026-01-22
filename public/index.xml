@@ -30,6 +30,13 @@
       <description>hey, hier gibt es eine kurze Introduccion blablabla balablabkabakabl ablabalabl</description>
     </item>
     <item>
+      <title>Post-Titel</title>
+      <link>http://localhost:1313/travelblog2026/posts/vorlage/</link>
+      <pubDate>Wed, 14 Jan 2026 21:35:46 +0100</pubDate>
+      <guid>http://localhost:1313/travelblog2026/posts/vorlage/</guid>
+      <description>Kurze Zusammenfassung des Blogeintrages. Hier werden u.a. Formatierungen zu finden</description>
+    </item>
+    <item>
       <title>My second Post (test.md)</title>
       <link>http://localhost:1313/travelblog2026/posts/test/</link>
       <pubDate>Thu, 14 Aug 2025 21:58:55 +0100</pubDate>
