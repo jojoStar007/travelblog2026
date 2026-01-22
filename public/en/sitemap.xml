@@ -2,31 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/travelblog2026/posts/test/</loc>
-    <lastmod>2026-01-14T21:58:55+01:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="de"
-                href="http://localhost:1313/travelblog2026/de/posts/test/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="fr"
-                href="http://localhost:1313/travelblog2026/fr/posts/test/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="http://localhost:1313/travelblog2026/es/posts/test/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/travelblog2026/posts/test/"
-                />
+    <loc>http://localhost:1313/travelblog2026/datenschutz/</loc>
+    <lastmod>2026-01-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/travelblog2026/impressum/</loc>
+    <lastmod>2026-01-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/travelblog2026/</loc>
-    <lastmod>2026-01-14T21:58:55+01:00</lastmod>
+    <lastmod>2026-01-22T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="de"
@@ -48,11 +31,34 @@
                 href="http://localhost:1313/travelblog2026/"
                 />
   </url><url>
-    <loc>http://localhost:1313/travelblog2026/posts/</loc>
-    <lastmod>2026-01-14T21:58:55+01:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/travelblog2026/posts/my-first-post/</loc>
     <lastmod>2026-01-14T21:35:46+01:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/travelblog2026/posts/</loc>
+    <lastmod>2026-01-14T21:35:46+01:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/travelblog2026/posts/test/</loc>
+    <lastmod>2025-08-14T21:58:55+01:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="de"
+                href="http://localhost:1313/travelblog2026/de/posts/test/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="http://localhost:1313/travelblog2026/fr/posts/test/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="http://localhost:1313/travelblog2026/es/posts/test/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/travelblog2026/posts/test/"
+                />
   </url><url>
     <loc>http://localhost:1313/travelblog2026/fotos/</loc>
     <xhtml:link

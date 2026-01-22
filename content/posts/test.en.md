@@ -3,6 +3,7 @@ date = '2025-08-14T21:58:55+01:00'
 draft = true
 title = 'My second Post (test.md)'
 featured_image = '/travelblog2026/images/platzhalter.jpg'
+place = "Valparaíso"
 
 # NEU: Liste für die Galerie-Schublade
 drawer_images = ['/travelblog2026/images/platzhalter.jpg', '/travelblog2026/images/dein-bild.jpg', '/travelblog2026/images/1.jpg', '/travelblog2026/images/2.jpg']

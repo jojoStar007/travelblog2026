@@ -6,14 +6,28 @@
     <description>Recent content on My Travel Blog</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 14 Jan 2026 21:35:46 +0100</lastBuildDate>
+    <lastBuildDate>Thu, 22 Jan 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/travelblog2026/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Datenschutzerklärung</title>
+      <link>http://localhost:1313/travelblog2026/datenschutz/</link>
+      <pubDate>Thu, 22 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/travelblog2026/datenschutz/</guid>
+      <description>&lt;h2 id=&#34;1-datenschutz-auf-einen-blick&#34;&gt;1. Datenschutz auf einen Blick&lt;/h2&gt;&#xA;&lt;p&gt;&lt;strong&gt;Allgemeine Hinweise&lt;/strong&gt; Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können. Da wir keine Tracking-Tools (wie Google Analytics) und keine Cookies einsetzen, werden von uns kaum Daten erhoben.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Datenerfassung auf dieser Website&lt;/strong&gt; Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber (siehe Impressum).&#xA;Die Website wird bei &lt;strong&gt;GitHub Pages&lt;/strong&gt; gehostet. Der Provider erhebt automatisch Informationen in sogenannten Server-Log-Dateien (z. B. Browser, Uhrzeit), die Ihr Browser automatisch übermittelt. Dies dient der Sicherheit des Betriebs.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Impressum</title>
+      <link>http://localhost:1313/travelblog2026/impressum/</link>
+      <pubDate>Thu, 22 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/travelblog2026/impressum/</guid>
+      <description>&lt;h2 id=&#34;angaben-gemäß--5-tmg&#34;&gt;Angaben gemäß § 5 TMG&lt;/h2&gt;&#xA;&lt;p&gt;Max Mustermann (Hier deinen Namen rein)&lt;br&gt;&#xA;Musterstraße 1 (Deine Adresse)&lt;br&gt;&#xA;12345 Musterstadt&lt;/p&gt;&#xA;&lt;h2 id=&#34;kontakt&#34;&gt;Kontakt&lt;/h2&gt;&#xA;&lt;p&gt;Telefon: +49 (0) 123 44 55 66 (Optional, aber empfohlen)&lt;br&gt;&#xA;E-Mail: &lt;a href=&#34;mailto:deine-email@adresse.de&#34;&gt;deine-email@adresse.de&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;redaktionell-verantwortlich&#34;&gt;Redaktionell verantwortlich&lt;/h2&gt;&#xA;&lt;p&gt;Max Mustermann&lt;br&gt;&#xA;Musterstraße 1&lt;br&gt;&#xA;12345 Musterstadt&lt;/p&gt;&#xA;&lt;p&gt;Quelle: &lt;a href=&#34;https://www.e-recht24.de&#34;&gt;e-recht24.de&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>My First Post</title>
       <link>http://localhost:1313/travelblog2026/posts/my-first-post/</link>
       <pubDate>Wed, 14 Jan 2026 21:35:46 +0100</pubDate>
       <guid>http://localhost:1313/travelblog2026/posts/my-first-post/</guid>
-      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;This is &lt;strong&gt;bold&lt;/strong&gt; text, and this is &lt;em&gt;emphasized&lt;/em&gt; text.&lt;/p&gt;&#xA;&lt;p&gt;Visit the &lt;a href=&#34;https://gohugo.io&#34;&gt;Hugo&lt;/a&gt; website!&lt;/p&gt;&#xA;&lt;p&gt;Hallooooooo&lt;/p&gt;</description>
+      <description>hey, hier gibt es eine kurze Introduccion blablabla balablabkabakabl ablabalabl</description>
     </item>
     <item>
       <title>My second Post (test.md)</title>
