@@ -1,5 +1,5 @@
 baseURL = 'https://jojoStar007.github.io/travelblog2026/'
-languageCode = 'en-us-fr-es'
+languageCode = 'de-en-us-fr-es'
 title = 'blogStolz'
 theme = 'ananke'
 
@@ -15,7 +15,7 @@ theme = 'ananke'
 
 
 # Standard-Sprache (falls nichts angegeben ist)
-defaultContentLanguage = "en"
+defaultContentLanguage = "de"
 
 [languages]
   [languages.de]
