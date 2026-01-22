@@ -1,7 +1,7 @@
 # Anleitung zum Post erstellen
 
 1. git status
-2. bei Bedarf: git pull
+2. zur Sicherheit: git pull
    
 3. neue .md Dateien erstellen in travelblog2026\content\posts (in 4 Sprachen)
    - unten auf "Markdownsyntax" gehen <img width="202" height="42" alt="image" src="https://github.com/user-attachments/assets/1ead409b-9dcd-4378-a807-ff1aea469f27" />
