@@ -1,6 +1,6 @@
 +++
 date = '2025-08-14T21:58:55+01:00'
-draft = true
+draft = false
 title = 'My second Post (test.md)'
 featured_image = '/travelblog2026/images/platzhalter.jpg'
 
@@ -9,7 +9,7 @@ drawer_images = ['/travelblog2026/images/platzhalter.jpg', '/travelblog2026/imag
 
 # Format: [Breitengrad, Längengrad]
 location = [-33.44714803139875, -70.68755529992848]
-# transport = 'flight'  # <--- Das sorgt für die gestrichelte Linie HIERHER
+transport = 'flight'  # <--- Das sorgt für die gestrichelte Linie HIERHER
 +++
 
 
