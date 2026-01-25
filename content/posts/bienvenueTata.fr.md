@@ -4,7 +4,7 @@ draft = false								#muss false sein, damit im Internet sichtbar, sonst nur in 
 title = 'Bienvenue sur mon blog de voyage'
 place = "Aix de Chapelle"
 
-featured_image = '/travelblog2026/images/me.jpg'		#Bild, welches man neben Post in Liste klein sieht -> nicht in Galerie
+featured_image = 'https://jojoStar007.github.io/travelblog2026/images/me.jpg'		#Bild, welches man neben Post in Liste klein sieht -> nicht in Galerie
 drawer_images = ['/travelblog2026/images/backpack.jpg']		#Bilder, die man in Schublade sieht, wenn man auf Post geht -> in Galerie
 # drawer_image = '/travelblog2026/images/platzhalter-quer.jpg'		#wenn man nur ein Bild in die Schublade packen möchte, welches nicht in der Galerie auftaucht						
 
