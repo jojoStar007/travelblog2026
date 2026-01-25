@@ -207,6 +207,10 @@
       // JA: Dann zwingen wir die Karte ZU
       drawer.classList.remove("open");
       drawer.classList.add("closed");
+
+      if (btnIcon) {
+         btnIcon.innerHTML = "➡️"; 
+      }
     }
   });
 
