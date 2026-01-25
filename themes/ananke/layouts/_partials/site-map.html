@@ -210,7 +210,11 @@
       if (btnIcon) {
          btnIcon.innerHTML = "➡️"; 
       }
-    
+    } else {
+      // ensure the button icon matches initial drawer state on larger screens too
+      if (btnIcon) {
+        btnIcon.innerHTML = drawer.classList.contains("open") ? "⬅️" : "➡️";
+      }
     }
   });
 
