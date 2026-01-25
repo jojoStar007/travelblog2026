@@ -54,15 +54,15 @@
   /* 3. Button Styling */
   #map-toggle-btn {
     width: 100%; height: 100%;
-    background-color: #333; color: white; border: none; cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.5); color: white; border: none; cursor: pointer;
     font-size: 1.2rem; display: flex; align-items: center; justify-content: center;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
     transition: border-radius 0.4s; 
   }
 
   .map-drawer.closed #map-toggle-btn { border-radius: 0 5px 5px 0; }
-  .map-drawer.open #map-toggle-btn { border-radius: 5px 0 0 5px; background-color: #555; }
-  #map-toggle-btn:hover { background-color: #000; }
+  .map-drawer.open #map-toggle-btn { border-radius: 5px 0 0 5px; background-color: rgba(0, 0, 0, 0.3); }
+  #map-toggle-btn:hover { background-color: rgba(0, 0, 0, 0.8); }
   
   .map-content { height: 100%; width: 100%; overflow: hidden; }
 
@@ -207,7 +207,9 @@
       // JA: Dann zwingen wir die Karte ZU
       drawer.classList.remove("open");
       drawer.classList.add("closed");
+      if (btnIcon) {
          btnIcon.innerHTML = "➡️"; 
+      }
     
     }
   });
