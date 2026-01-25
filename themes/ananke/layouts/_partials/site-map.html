@@ -31,7 +31,7 @@
   /* ZUSTAND: ZU */
   .map-drawer.closed { transform: translateX(-100%); }
 
-  /* ZUSTAND: AUF */
+  /* ZUSTAND: AUF (desktop) */
   .map-drawer.open { transform: translateX(0); }
 
   /* 2. Der Button-Container */
@@ -43,6 +43,10 @@
     height: 40px;
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     z-index: 2000;
+
+    /* anchor to the right of the drawer by default */
+    right: 0;
+    left: auto;
   }
 
   /* Wenn ZU: Button muss RAUS */
@@ -67,8 +71,6 @@
   .map-content { height: 100%; width: 100%; overflow: hidden; }
 
   /* --- GLOBALER INHALT VERSCHIEBEN --- */
-  
-  /* Dein individueller Wert: 42% */
   body.body-map-open main, 
   body.body-map-open .travel-container {
     margin-left: 42% !important; 
@@ -83,12 +85,15 @@
 
   /* Handy Logik */
   @media (max-width: 900px) {
-    width: 50%;
-    body.body-map-open header, 
-    body.body-map-open footer, 
-    body.body-map-open main {
-      left: 0 !important; width: 100% !important; margin-left: 0 !important;
-    }
+    /* base: keep drawer hidden by default on small screens (prevents flicker if server renders "open") */
+    .map-drawer { transform: translateX(-100%); width: 50%; }
+
+    /* override to show only when JS sets js-open */
+    .map-drawer.js-open { transform: translateX(0); }
+
+    /* force button placement on small screens (avoid other CSS interfering) */
+    .map-drawer .map-toggle-btn-wrapper { right: -40px !important; left: auto !important; }
+    .map-drawer.js-open .map-toggle-btn-wrapper { right: 0 !important; left: auto !important; }
   }
 </style>
 
@@ -148,15 +153,15 @@
     	<b>${point.title}</b><br>
     	<span style="color: #666; font-size: 0.9em;">📅 ${point.date}</span><br>
     	<a href="${point.link}">
-      		{{ if eq .Lang "de" }}
+       		{{ if eq .Lang "de" }}
         		Zum Blogeintrag →
-      		{{ else if eq .Lang "es" }}
+       		{{ else if eq .Lang "es" }}
         		Leer la entrada →
-      		{{ else if eq .Lang "fr" }}
+       		{{ else if eq .Lang "fr" }}
         		Lire l'article →
-      		{{ else }}
+       		{{ else }}
         		Go to post →
-      		{{ end }}
+       		{{ end }}
     	</a>
   `;
       marker.bindPopup(popupContent);
@@ -200,22 +205,44 @@
 
   document.addEventListener("DOMContentLoaded", function() {
     var drawer = document.getElementById("map-drawer");
-    if (drawer.classList.contains("open") && window.innerWidth >= 900) {
-      document.body.classList.add("body-map-open");
-    }
-    if (window.innerWidth < 900) {
-      // JA: Dann zwingen wir die Karte ZU
-      drawer.classList.remove("open");
-      drawer.classList.add("closed");
-      if (btnIcon) {
-         btnIcon.innerHTML = "➡️"; 
+    var btnIcon = document.getElementById("btn-icon");
+
+    // If large screen: respect server-side "open"/"closed" and sync js-open + body class
+    if (window.innerWidth >= 900) {
+      if (drawer.classList.contains("open")) {
+        drawer.classList.add("js-open");
+        document.body.classList.add("body-map-open");
+        if (btnIcon) btnIcon.innerHTML = "⬅️";
+      } else {
+        drawer.classList.remove("js-open");
+        if (btnIcon) btnIcon.innerHTML = "➡️";
       }
     } else {
-      // ensure the button icon matches initial drawer state on larger screens too
+      // On small screens start closed (avoid flicker even if markup had "open")
+      drawer.classList.remove("open");
+      drawer.classList.add("closed");
+      drawer.classList.remove("js-open");
       if (btnIcon) {
-        btnIcon.innerHTML = drawer.classList.contains("open") ? "⬅️" : "➡️";
+        btnIcon.innerHTML = "➡️";
       }
     }
+
+    // Optional: respond to resize (simple)
+    window.addEventListener('resize', function() {
+      if (window.innerWidth >= 900) {
+        // on going to desktop, allow the drawer to follow the 'open' class; if it's open, show
+        if (drawer.classList.contains("open")) {
+          drawer.classList.add("js-open");
+          document.body.classList.add("body-map-open");
+          if (btnIcon) btnIcon.innerHTML = "⬅️";
+        }
+      } else {
+        // on going to small screen keep closed visual unless user opens via toggle
+        drawer.classList.remove("js-open");
+        document.body.classList.remove("body-map-open");
+        if (btnIcon) btnIcon.innerHTML = "➡️";
+      }
+    });
   });
 
   function toggleMap() {
@@ -223,10 +250,14 @@
     var btnIcon = document.getElementById("btn-icon");
     if (drawer.classList.contains("closed")) {
       drawer.classList.remove("closed"); drawer.classList.add("open");
-      btnIcon.innerHTML = "⬅️"; updateBodyState(true); 
+      drawer.classList.add("js-open");
+      btnIcon && (btnIcon.innerHTML = "⬅️");
+      updateBodyState(true);
     } else {
       drawer.classList.remove("open"); drawer.classList.add("closed");
-      btnIcon.innerHTML = "➡️"; updateBodyState(false); 
+      drawer.classList.remove("js-open");
+      btnIcon && (btnIcon.innerHTML = "➡️");
+      updateBodyState(false);
     }
   }
 </script>
