@@ -202,6 +202,11 @@
     if (drawer.classList.contains("open") && window.innerWidth >= 900) {
       document.body.classList.add("body-map-open");
     }
+    if (window.innerWidth < 900) {
+      // JA: Dann zwingen wir die Karte ZU
+      drawer.classList.remove("open");
+      drawer.classList.add("closed");
+    }
   });
 
   function toggleMap() {
