@@ -17,8 +17,12 @@ summary = "Hallöchen ihr Lieben!"
 ## Herzlich Willkommen
 
 Über diese Webseite werde ich versuchen, möglichst meine ganze Reise zu dokumentieren, um dich an meinen Abenteuern in 2026 teilhaben zu lassen.
+
 Entweder du kannst dich in Zukunft von Post zu Post durchklicken und auf der Karte nachverfolgen, wo ich mich gerade so aufhalte.
 Oder du gehst direkt auf die Gallerie, um dir einfach nur (hoffentlich) schöne Bilder anzuschauen.
+
 Ich wünsche dir viel Spaß und schreib mir doch gerne zwischendurch auch mal, wie es dir so geht!
+
 Ganz liebe Grüße
+
 Joana
