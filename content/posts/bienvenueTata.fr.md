@@ -4,8 +4,8 @@ draft = false								#muss false sein, damit im Internet sichtbar, sonst nur in 
 title = 'Bienvenue sur mon blog de voyage'
 place = "Aix de Chapelle"
 
-featured_image = 'https://jojoStar007.github.io/travelblog2026/images/me.jpg'		#Bild, welches man neben Post in Liste klein sieht -> nicht in Galerie
-drawer_images = ['/travelblog2026/images/backpack.jpg']		#Bilder, die man in Schublade sieht, wenn man auf Post geht -> in Galerie
+featured_image = 'https://jojoStar007.github.io/travelblog2026/images/me.jpg'	
+drawer_images = ['https://jojoStar007.github.io/travelblog2026/images/backpack.jpg']
 # drawer_image = '/travelblog2026/images/platzhalter-quer.jpg'		#wenn man nur ein Bild in die Schublade packen möchte, welches nicht in der Galerie auftaucht						
 
 Location = [50.7772869007148, 6.188548579231445]			# Format: [Breitengrad, Längengrad] --> für den Pin auf der Karte, wenn anders als vorheriger wird Pin erstellt
