@@ -4,9 +4,9 @@ draft = true								#muss false sein, damit im Internet sichtbar, sonst nur in m
 title = 'Post-Titel'
 place = "Ort"
 
-featured_image = '/travelblog2026/images/platzhalter-quer.jpg'		#Bild, welches man neben Post in Liste klein sieht -> nicht in Galerie
-drawer_images = ['/travelblog2026/images/platzhalter-quer.jpg']		#Bilder, die man in Schublade sieht, wenn man auf Post geht -> in Galerie
-# drawer_image = '/travelblog2026/images/platzhalter-quer.jpg'		#wenn man nur ein Bild in die Schublade packen möchte, welches nicht in der Galerie auftaucht						
+featured_image = 'https://jojoStar007.github.io/travelblog2026/images/me.jpg'		#Bild, welches man neben Post in Liste klein sieht -> nicht in Galerie
+drawer_images = ['https://jojoStar007.github.io/travelblog2026/images/platzhalter-quer.jpg']		#Bilder, die man in Schublade sieht, wenn man auf Post geht -> in Galerie
+# drawer_image = 'https://jojoStar007.github.io/travelblog2026/images/platzhalter-quer.jpg'		#wenn man nur ein Bild in die Schublade packen möchte, welches nicht in der Galerie auftaucht						
 
 Location = [-33.04674036048734, -71.61516919332927]			# Format: [Breitengrad, Längengrad] --> für den Pin auf der Karte, wenn anders als vorheriger wird Pin erstellt
 
