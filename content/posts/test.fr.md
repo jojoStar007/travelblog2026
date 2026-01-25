@@ -1,6 +1,6 @@
 +++
 date = '2025-08-14T21:58:55+01:00'
-draft = false
+draft = true
 title = 'My second Post (test.md)'
 featured_image = '/travelblog2026/images/platzhalter.jpg'
 
